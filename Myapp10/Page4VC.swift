@@ -34,20 +34,27 @@ class Page4VC: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     
     //設定編輯模式
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle{
-        return .none
-    }
+//    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle{
+////        return .none ==> 使用在 move.mode
+//        return .delete
+//    }
 
+    
+    //設定是否可以搬移 ==> 不實作implement的話, 預設是可以move(true)
     public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
+        return false
     }
+    
+    //處理刪除或新增
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath){
+        
+    }
+    
     public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath){
         //此處進行陣列交換
         let moveString = items.remove(at: sourceIndexPath.row)
         items.insert(moveString, at: destinationIndexPath.row)
-        
         print(items)
-        
     }
     
     
